@@ -1,0 +1,55 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: storage-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/storage_service
+    username: root
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/IAM2
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 2
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+cloudinary:
+  cloud_name: dbx3enn2g
+  api_key: 664365616552428
+  api_secret: b7nDyGDTVeKzyopSieeT7k1yMoQ
+  folder: storage-service
+
+iam:
+  service:
+    url: http://localhost:8087
+  token-url: http://localhost:8080/realms/IAM2/protocol/openid-connect/token
+  client-id: storage-service-client
+  client-secret: eNhoiWZC4UFrzwPBW4DyowSeJAynWpUH
+  base-url: http://localhost:8087

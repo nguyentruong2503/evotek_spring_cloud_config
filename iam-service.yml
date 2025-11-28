@@ -1,0 +1,85 @@
+server:
+  port: 8087
+
+spring:
+  application:
+    name: iam-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/iam2
+    username: root
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 2
+
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: iam2-client
+            client-secret: DmpdPTzBKq5ZMdq8OobuTHFrdpt6vuO8
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8087/login/oauth2/code/keycloak
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/IAM2
+
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/IAM2
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+iam:
+  security:
+    keycloak-enabled: true
+
+keycloak:
+  server-url: http://localhost:8080
+  realm: IAM2
+
+  admin:
+    client-id: admin-cli
+    client-secret: XQrsIMtwVe5pI4BfXd22REoX69fwrqTf
+    username: admin
+    password: 123456
+
+  client-id: iam-service-client
+  client-secret: s5wMjET0mIiIMAQGtg6E9SaR1oOK9FtA
+  token-uri: http://localhost:8080/realms/IAM2/protocol/openid-connect/token
+
+default:
+  password: 123456aA@
+
+jwt:
+  secretKey: 56cdcd2471d1491ee1563cbae42f4390e50809ac4ef10274af6d5516d176db69
+  private-key: classpath:keys/private_pkcs8.pem
+  public-key: classpath:keys/public.pem
+
+app:
+  jwk-set-uri: http://localhost:8080/realms/IAM2/protocol/openid-connect/certs
+
+storage:
+  service:
+    url: http://localhost:8088
