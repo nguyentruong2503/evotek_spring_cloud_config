@@ -55,12 +55,16 @@ iam:
   base-url: http://localhost:8087
 
 management:
+  endpoint:
+    health:
+      show-details: always
   endpoints:
     web:
       exposure:
         include: "*"
       discovery:
         enabled: true
+
 
   endpoint:
     prometheus:
