@@ -83,3 +83,15 @@ app:
 storage:
   service:
     url: http://localhost:8088
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  metrics:
+    tags:
+      application: iam-service
+    web:
+      server:
+        auto-time-requests: true
