@@ -89,19 +89,15 @@ management:
     web:
       exposure:
         include: health,info,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
   metrics:
     tags:
       application: iam-service
     web:
       server:
         auto-time-requests: true
-        include: "*"
-
-  endpoint:
-    prometheus:
-      enabled: true
-
-  metrics:
     export:
       prometheus:
         enabled: true
