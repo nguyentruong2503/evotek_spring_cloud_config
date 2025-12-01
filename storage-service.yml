@@ -59,12 +59,7 @@ management:
     web:
       exposure:
         include: "*"
-      discovery:
-        enabled: true
   metrics:
     export:
       prometheus:
         enabled: true
-  endpoint:
-    health:
-      show-details: always
