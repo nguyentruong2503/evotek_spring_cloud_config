@@ -53,3 +53,13 @@ iam:
   client-id: storage-service-client
   client-secret: eNhoiWZC4UFrzwPBW4DyowSeJAynWpUH
   base-url: http://localhost:8087
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
