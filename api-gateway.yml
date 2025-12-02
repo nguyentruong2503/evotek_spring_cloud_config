@@ -43,8 +43,3 @@ management:
   metrics:
     tags:
       application: api-gateway
-    web:
-      server:
-        request:
-          autotime:
-            enabled: true
