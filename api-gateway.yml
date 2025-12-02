@@ -35,13 +35,16 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
-
+        include: health,info,prometheus
   endpoint:
     prometheus:
       enabled: true
-
   metrics:
+    tags:
+      application: api-gateway
+    web:
+      server:
+        auto-time-requests: true
     export:
       prometheus:
         enabled: true
